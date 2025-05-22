@@ -8,9 +8,9 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 
 - Utilize a aba **Issues** do GitHub para relatar comportamentos inesperados ou erros.
 - Explique claramente o problema e, se possível, inclua:
-  - Passos para reproduzir o erro
-  - Capturas de tela ou mensagens de erro
-  - Trechos de código relacionados
+    - Passos para reproduzir o erro
+    - Capturas de tela ou mensagens de erro
+    - Trechos de código relacionados
 
 ### Sugerindo Melhorias
 
@@ -22,7 +22,7 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 ### Pré-requisitos
 
 - Java JDK 11 ou superior
-- IDE Java (recomendado: IntelliJ IDEA ou netBeans)
+- IDE Java (recomendado: IntelliJ IDEA ou NetBeans)
 - MySQL Server ativo
 
 ### Instruções de Instalação e Execução
@@ -34,11 +34,33 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 
 2. **Importe o projeto em sua IDE Java**
 
-3. **Configure o banco de dados executando o script SQL:**
-   - Caminho: `db/estoque.sql`
+3. **Configure o banco de dados:**
+    - Certifique-se de que o MySQL Server esteja instalado e em execução
+    - Execute o script SQL localizado em `db/estoque.sql`
+    - Ajuste as credenciais de conexão em `src/dao/ConnectionFactory.java`
 
 4. **Compile e execute o projeto**
-   - A classe principal é `App.java`
+    - A classe principal é `src/view/App.java`
+
+## 📝 Lista de Tarefas (ToDo)
+
+O projeto possui uma estrutura base sólida, mas ainda necessita da implementação de várias funcionalidades. Abaixo estão as principais tarefas pendentes:
+
+### Interfaces Gráficas
+- [ ] Implementar tela de cadastro de produtos (`view/produto/TelaCadastroProduto.java`)
+- [ ] Implementar tela de consulta de produtos (`view/produto/TelaConsultaProduto.java`)
+- [ ] Implementar tela de reajuste de preços (`view/produto/TelaReajusteProduto.java`)
+- [ ] Implementar tela de cadastro de categorias (`view/categoria/TelaCadastroCategoria.java`)
+- [ ] Implementar tela de consulta de categorias (`view/categoria/TelaConsultaCategoria.java`)
+- [ ] Implementar tela de entrada de estoque (`view/movimentacao/TelaEntradaEstoque.java`)
+- [ ] Implementar tela de saída de estoque (`view/movimentacao/TelaSaidaEstoque.java`)
+
+### Relatórios
+- [ ] Implementar tela de relatório de preços (`view/relatorio/TelaRelatorioPrecos.java`)
+- [ ] Implementar tela de relatório de balanço (`view/relatorio/TelaRelatorioBalanco.java`)
+- [ ] Implementar tela de relatório de produtos abaixo do mínimo (`view/relatorio/TelaRelatorioAbaixoMinimo.java`)
+- [ ] Implementar tela de relatório de produtos acima do máximo (`view/relatorio/TelaRelatorioAcimaMaximo.java`)
+- [ ] Implementar tela de relatório por categoria (`view/relatorio/TelaRelatorioPorCategoria.java`)
 
 ## 🚀 Enviando Pull Requests
 
@@ -63,6 +85,12 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 - Nome de classes em **CamelCase**
 - Nome de pacotes em **letras minúsculas**
 - Comentários explicativos sempre que necessário
+- Nomenclatura em português para classes, métodos e variáveis
+- Seguir princípios de Clean Code:
+    - Métodos pequenos e com responsabilidade única
+    - Nomes significativos
+    - Evitar duplicação de código
+    - Tratamento adequado de exceções
 
 ## 📜 Código de Conduta
 
