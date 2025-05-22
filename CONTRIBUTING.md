@@ -29,7 +29,7 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 
 1. **Clone este repositório:**
    ```bash
-   git clone https://github.com/PedroDella/sem1.exe.git
+   git clone https://github.com/PedroDella/Sistema-Controle-Estoque
    ```
 
 2. **Importe o projeto em sua IDE Java**
