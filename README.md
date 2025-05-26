@@ -15,7 +15,7 @@ Projeto desenvolvido para a disciplina **Programação de Soluções Computacion
 - Gabriel Luipo
 - Nícolas Gaia Negrão
 - Pedro Henrique Francio Della Giustina
-- Thiago da Silveira Gentil - 1072112389
+- Thiago da Silveira Gentil - 1072112389 - @Tgentil
 
 ## 📝 Descrição do Projeto
 
