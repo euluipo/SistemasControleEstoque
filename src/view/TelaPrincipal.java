@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// IMPORT DAS TELAS DE PRODUTOS
+import view.produto.CadastroProdutoView;
+import view.produto.ConsultarProdutoView;
+import view.produto.ReajustarPrecoProdutoView;
+
 /**
  * Classe principal da aplicação que exibe a tela inicial do sistema.
  * Contém o menu principal com acesso a todas as funcionalidades.
@@ -136,33 +141,24 @@ public class TelaPrincipal extends JFrame {
         miCadastrarProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aqui seria aberta a tela de cadastro de produtos
                 lblStatus.setText("Abrindo cadastro de produtos...");
-                JOptionPane.showMessageDialog(TelaPrincipal.this, 
-                        "Funcionalidade de cadastro de produtos a ser implementada.", 
-                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+                new CadastroProdutoView().setVisible(true);
             }
         });
-        
+
         miConsultarProdutos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aqui seria aberta a tela de consulta de produtos
                 lblStatus.setText("Abrindo consulta de produtos...");
-                JOptionPane.showMessageDialog(TelaPrincipal.this, 
-                        "Funcionalidade de consulta de produtos a ser implementada.", 
-                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+                new ConsultarProdutoView().setVisible(true);
             }
         });
-        
+
         miReajustarPrecos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aqui seria aberta a tela de reajuste de preços
                 lblStatus.setText("Abrindo reajuste de preços...");
-                JOptionPane.showMessageDialog(TelaPrincipal.this, 
-                        "Funcionalidade de reajuste de preços a ser implementada.", 
-                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+                new ReajustarPrecoProdutoView().setVisible(true);
             }
         });
         
