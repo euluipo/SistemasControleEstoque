@@ -14,7 +14,7 @@ Projeto desenvolvido para a disciplina **Programação de Soluções Computacion
 - Arthur Zamprogna Ventura
 - Gabriel Luipo
 - Nícolas Gaia Negrão
-- Pedro Henrique Francio Della Giustina
+- Pedro Henrique Francio Della Giustina - 10725110773 - @PedroDella
 - Thiago da Silveira Gentil - 1072112389 - @Tgentil
 
 ## 📝 Descrição do Projeto
