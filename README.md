@@ -12,7 +12,7 @@ Projeto desenvolvido para a disciplina **Programação de Soluções Computacion
 ## 👥 Integrantes do Grupo
 
 - Arthur Zamprogna Ventura - 10725111773 - @arthurventuraza
-- Gabriel Luipo
+- Gabriel Luipo - 1072519471 - @euluipo
 - Nícolas Gaia Negrão
 - Pedro Henrique Francio Della Giustina - 10725110773 - @PedroDella
 - Thiago da Silveira Gentil - 1072112389 - @Tgentil
