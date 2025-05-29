@@ -29,30 +29,52 @@ Este sistema foi desenvolvido com base em um problema contextualizado do cotidia
 Sistema inspirado no projeto modelo:  
 🔗 [CadastroAlunoMySQLDAO - GitHub](https://github.com/osmarbraz/CadastroAlunoMySQLDAO)
 
-## ⚙️ Funcionalidades
+## ✅ Requisitos Funcionais
 
-- **CRUD de Produtos**
-- **CRUD de Categorias**
-- **Movimentação de Estoque (Entrada/Saída)**
-- **Reajuste de preços em massa por percentual**
-- **Geração dos relatórios:**
-  - Lista de Preços
-  - Balanço Físico/Financeiro
-  - Produtos abaixo da quantidade mínima
-  - Produtos acima da quantidade máxima
-  - Quantidade de produtos por categoria
+### RF001 - Gerenciamento de Produtos
+- **RF001.1:** Permitir o cadastro, consulta, edição e exclusão de produtos. (CRUD)
+- **RF001.2:** Armazenar os seguintes atributos para cada produto: Nome, Preço unitário, Unidade de medida, Quantidade em estoque, Quantidade mínima, Quantidade máxima e Categoria associada.
+- **RF001.3:** Permitir o reajuste de preços em massa para todos os produtos com base em um percentual informado.
+
+### RF002 - Gerenciamento de Categorias
+- **RF002.1:** Permitir o cadastro, consulta, edição e exclusão de categorias.
+- **RF002.2:** Armazenar os seguintes atributos para cada categoria: Nome, Tamanho (Pequeno, Médio, Grande) e Embalagem (Lata, Vidro, Plástico).
+
+### RF003 - Movimentação de Estoque
+- **RF003.1:** Registrar entradas e saídas de produtos no estoque.
+- **RF003.2:** Atualizar automaticamente a quantidade em estoque do produto após cada movimentação.
+- **RF003.3:** Alertar o usuário durante a saída se a quantidade resultante ficar abaixo do mínimo definido para o produto.
+- **RF003.4:** Alertar o usuário durante a entrada se a quantidade resultante ficar acima do máximo definido para o produto.
+
+### RF004 - Geração de Relatórios
+- **RF004.1:** Gerar relatório de Lista de Preços, contendo todos os produtos em ordem alfabética, com preço unitário, unidade de medida e categoria.
+- **RF004.2:** Gerar relatório de Balanço Físico/Financeiro, listando todos os produtos em ordem alfabética, com quantidade disponível, valor total por produto (quantidade * preço unitário) e valor total do estoque (somatório dos valores totais).
+- **RF004.3:** Gerar relatório de Produtos Abaixo da Quantidade Mínima, listando nome do produto, quantidade mínima e quantidade atual em estoque.
+- **RF004.4:** Gerar relatório de Produtos Acima da Quantidade Máxima, listando nome do produto, quantidade máxima e quantidade atual em estoque.
+- **RF004.5:** Gerar relatório de Quantidade de Produtos por Categoria, mostrando o nome da categoria e a quantidade de produtos distintos associados a ela.
+
+## ⚠️ Requisitos Não Funcionais
+
+- **RNF001 (Usabilidade):** A interface gráfica deve ser intuitiva e de fácil utilização.
+- **RNF002 (Desempenho):** As consultas ao banco de dados e a geração de relatórios devem ser realizadas em tempo hábil.
+- **RNF003 (Manutenibilidade):** O código deve seguir boas práticas (Clean Code), ser bem documentado e organizado em pacotes (model, view, dao, util) para facilitar a manutenção e futuras evoluções.
+- **RNF004 (Portabilidade):** O sistema deve ser executável em diferentes sistemas operacionais que suportem Java e MySQL.
+- **RNF005 (Segurança):** As credenciais de acesso ao banco de dados não devem ser expostas diretamente no código versionado (idealmente, usar variáveis de ambiente ou arquivos de configuração externos, mas para este projeto acadêmico, estão em `ConnectionFactory.java` e devem ser ajustadas localmente).
+- **RNF006 (Tecnologia):** O sistema deve ser desenvolvido utilizando as tecnologias especificadas (Java, MySQL, Swing, DAO).
 
 ## 🛠️ Tecnologias e Ferramentas Utilizadas
 
-- **Linguagem:** Java
-- **IDE:** IntelliJ IDEA / NetBeans
-- **Banco de Dados:** MySQL
+- **Linguagem:** Java (JDK 11 ou superior)
+- **IDE:** IntelliJ IDEA (Recomendado, versão 2023.x ou superior) / NetBeans
+- **Banco de Dados:** MySQL Server (Recomendado, versão 8.0 ou superior)
+- **Driver Banco de Dados:** MySQL Connector/J (JDBC Driver, versão 8.0.x ou superior)
+- **Interface Gráfica:** Java Swing
 - **Padrão de Acesso a Dados:** DAO (Data Access Object)
-- **Controle de Versão:** Git + GitHub
+- **Controle de Versão:** Git (Recomendado, versão 2.x ou superior) + GitHub
 
 ## 🧱 Estrutura do Projeto
 
-- `src/model`: Classes de entidade (Produto, Categoria, Movimentação)
+- `src/model`: Classes de entidade (Produto, Categoria, Movimentacao)
 - `src/view`: Telas e interface gráfica (Swing)
 - `src/dao`: Classes de persistência e consultas ao banco
 - `src/util`: Classes utilitárias (Validador, GeradorRelatorio)
@@ -60,7 +82,7 @@ Sistema inspirado no projeto modelo:
 
 ## 📂 Banco de Dados
 
-Arquivo `estoque.sql` contendo:
+Arquivo `db/estoque.sql` contendo:
 
 - Criação das tabelas `produto`, `categoria`, `movimentacao`
 - Relações entre produto e categoria
@@ -97,172 +119,48 @@ Arquivo `estoque.sql` contendo:
    ```
 
 2. **Configure o banco de dados:**
-  - Certifique-se de que o MySQL Server esteja instalado e em execução
-  - Abra o MySQL Command Line Client ou MySQL Workbench
-  - Crie o banco de dados e execute o script SQL:
-    ```sql
-    CREATE DATABASE controle_estoque;
-    USE controle_estoque;
-    source caminho/para/db/estoque.sql
-    ```
-  - Alternativamente, no MySQL Workbench, vá em File > Open SQL Script, selecione o arquivo `db/estoque.sql` e execute-o
+- Certifique-se de que o MySQL Server esteja instalado e em execução
+- Abra o MySQL Command Line Client ou MySQL Workbench
+- Crie o banco de dados e execute o script SQL:
+  ```sql
+  CREATE DATABASE controle_estoque;
+  USE controle_estoque;
+  source caminho/para/db/estoque.sql
+  ```
+- Alternativamente, no MySQL Workbench, vá em File > Open SQL Script, selecione o arquivo `db/estoque.sql` e execute-o
 
 3. **Configure a conexão com o banco de dados:**
-  - Abra o arquivo `src/dao/ConnectionFactory.java`
-  - Ajuste as constantes de conexão conforme sua configuração:
-    ```java
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/controle_estoque";
-    private static final String USER = "seu_usuario"; // Altere para seu usuário MySQL
-    private static final String PASS = "sua_senha";   // Altere para sua senha MySQL
-    ```
+- Abra o arquivo `src/dao/ConnectionFactory.java`
+- Ajuste as constantes de conexão conforme sua configuração:
+  ```java
+  private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+  private static final String URL = "jdbc:mysql://localhost:3306/controle_estoque";
+  private static final String USER = "seu_usuario"; // Altere para seu usuário MySQL
+  private static final String PASS = "sua_senha";   // Altere para sua senha MySQL
+  ```
 
 4. **Importe o projeto na sua IDE:**
-  - No IntelliJ IDEA: File > Open > Selecione a pasta do projeto
-  - Adicione o driver JDBC do MySQL ao projeto:
+- No IntelliJ IDEA: File > Open > Selecione a pasta do projeto
+- Adicione o driver JDBC do MySQL ao projeto:
     - File > Project Structure > Libraries
     - Clique no "+" e selecione "From Maven"
-    - Pesquise por "mysql-connector-java" e adicione a versão mais recente
+    - Pesquise por "mysql-connector-java" e adicione a versão mais recente (ex: 8.0.x)
 
 5. **Execute a aplicação:**
-  - Navegue até a classe `src/view/App.java`
-  - Clique com o botão direito e selecione "Run 'App.main()'"
-  - A interface gráfica do sistema será iniciada
+- Navegue até a classe `src/view/App.java`
+- Clique com o botão direito e selecione "Run 'App.main()'"
+- A interface gráfica do sistema será iniciada
 
 ### Solução de Problemas
 
 - Se ocorrer erro de conexão com o banco de dados:
-  - Verifique se o MySQL está em execução
-  - Confirme se as credenciais em ConnectionFactory.java estão corretas
-  - Certifique-se de que o banco de dados `controle_estoque` foi criado
+    - Verifique se o MySQL está em execução
+    - Confirme se as credenciais em ConnectionFactory.java estão corretas
+    - Certifique-se de que o banco de dados `controle_estoque` foi criado
 
 - Se ocorrer erro de ClassNotFoundException:
-  - Verifique se o driver JDBC do MySQL foi adicionado corretamente ao projeto
+    - Verifique se o driver JDBC do MySQL foi adicionado corretamente ao projeto
 
-# Requisitos do Sistema de Controle de Estoque
+### Estruturação do Projeto
 
-## Requisitos Funcionais
-
-### RF001 - Produto
-- RF001.1 - Cadastro de produtos (CRUD)
-- RF001.2 - Atributos: Nome, Preço unitário, Unidade, Quantidade em estoque, Quantidade mínima, Quantidade máxima, Categoria
-- RF001.3 - Reajuste de preços em massa por percentual
-
-### RF002 - Categoria
-- RF002.1 - Cadastro de categorias (CRUD)
-- RF002.2 - Atributos: Nome, Tamanho (Pequeno, Médio, Grande), Embalagem (Lata, Vidro, Plástico)
-
-### RF003 - Movimentação de Estoque
-- RF003.1 - Registro de entradas e saídas de produtos
-- RF003.2 - Atualização automática do saldo em estoque
-- RF003.3 - Alertas quando quantidade abaixo do mínimo (saída) ou acima do máximo (entrada)
-
-### RF004 - Relatórios
-- RF004.1 - Lista de Preços: produtos em ordem alfabética com preço, unidade e categoria
-- RF004.2 - Balanço Físico/Financeiro: produtos, quantidade, valor total por produto e valor total do estoque
-- RF004.3 - Produtos abaixo da quantidade mínima
-- RF004.4 - Produtos acima da quantidade máxima
-- RF004.5 - Quantidade de produtos por categoria
-
-## RF005 - Regras de Negócio
-- RF005.1 - Saída de produto: subtrai quantidade do estoque
-- RF005.2 - Entrada de produto: adiciona quantidade ao estoque
-- RF005.3 - Alertar quando estoque abaixo do mínimo durante saída
-- RF005.4 - Alertar quando estoque acima do máximo durante entrada
-- RF005.5 - Não é necessário cadastrar clientes ou fornecedores
-
-## RNF001 - Requisitos Técnicos ( Não Funcionais )
-- RNF001.1 - Linguagem: Java
-- RNF001.2 - IDE: IntelliJ IDEA / NetBeans
-- RNF001.3 - Banco de Dados: MySQL
-- RNF001.4 - Padrão de Acesso a Dados: DAO (Data Access Object)
-- RNF001.5 - Controle de Versão: Git + GitHub
-- RNF001.6 - JDK 11 ou superior
-
-## Convenções de Código
-- Nome de classes em CamelCase
-- Nome de pacotes em letras minúsculas
-- Comentários explicativos
-- Nomenclatura em português
-- Clean Code
-
-# Relatório Final - Sistema de Controle de Estoque
-
-## Visão Geral do Projeto
-
-Este projeto implementa um Sistema de Controle de Estoque conforme os requisitos fornecidos. O sistema foi desenvolvido seguindo as melhores práticas de programação.
-
-## Estrutura do Projeto
-
-O projeto foi organizado seguindo o padrão DAO (Data Access Object) e a arquitetura MVC (Model-View-Controller), com os seguintes pacotes:
-
-- **model**: Classes que representam as entidades do sistema
-- **dao**: Classes responsáveis pelo acesso a dados
-- **view**: Classes de interface gráfica
-- **util**: Classes utilitárias
-
-## Funcionalidades Implementadas
-
-### Classes de Modelo
-- **Categoria**: Representa uma categoria de produtos com atributos como nome, tamanho e embalagem
-- **Produto**: Representa um produto com atributos como nome, preço, quantidades e categoria
-- **Movimentacao**: Representa uma movimentação de estoque (entrada ou saída)
-
-### Classes DAO
-- **ConnectionFactory**: Gerencia conexões com o banco de dados
-- **CategoriaDAO**: Operações CRUD e consultas específicas para categorias
-- **ProdutoDAO**: Operações CRUD e consultas específicas para produtos
-- **MovimentacaoDAO**: Operações CRUD e consultas específicas para movimentações
-
-### Classes Utilitárias
-- **Validador**: Métodos para validação de dados de entrada
-- **GeradorRelatorio**: Métodos para geração dos relatórios solicitados
-
-### Interface Gráfica
-- **TelaPrincipal**: Menu principal do sistema com acesso a todas as funcionalidades
-- **App**: Classe principal que inicia a aplicação
-
-## Banco de Dados
-
-O script SQL para criação do banco de dados está disponível em `db/estoque.sql`. Ele cria as tabelas necessárias e insere alguns dados de exemplo para testes.
-
-## Boas Práticas Aplicadas
-
-1. **Clean Code**:
-   - Nomes significativos em português
-   - Métodos pequenos e com responsabilidade única
-   - Comentários explicativos
-   - Tratamento adequado de exceções
-
-2. **Encapsulamento**:
-   - Atributos privados com getters e setters
-   - Validação de dados antes de persistência
-
-3. **Documentação**:
-   - Comentários JavaDoc em todas as classes e métodos
-   - Explicações claras sobre o propósito e funcionamento
-
-4. **Organização**:
-   - Estrutura de pacotes lógica e organizada
-   - Separação clara de responsabilidades
-
-## Como Executar o Projeto
-
-1. Importe o projeto no IntelliJ IDEA
-2. Configure o MySQL e execute o script `db/estoque.sql`
-3. Ajuste as configurações de conexão em `ConnectionFactory.java` se necessário
-4. Execute a classe `App.java` para iniciar o sistema
-
-## Próximos Passos
-
-Para completar a implementação, seria necessário:
-
-1. Implementar as telas específicas de cadastro e consulta
-2. Conectar as interfaces gráficas com as classes DAO
-3. Implementar a geração de relatórios na interface
-4. Adicionar validações na camada de visualização
-
-## Conclusão
-
-O projeto foi estruturado seguindo as melhores práticas de desenvolvimento, com código limpo, bem documentado e em português. A arquitetura escolhida permite fácil manutenção e extensão do sistema para atender a novos requisitos no futuro.
-
+[Estrutura do Projeto - Sistema de Controle de Estoque](docs/Estrutura_do_Projeto.md)
