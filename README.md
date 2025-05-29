@@ -143,41 +143,41 @@ Arquivo `estoque.sql` contendo:
 
 ## Requisitos Funcionais
 
-### Produto
-- Cadastro de produtos (CRUD)
-- Atributos: Nome, Preço unitário, Unidade, Quantidade em estoque, Quantidade mínima, Quantidade máxima, Categoria
-- Reajuste de preços em massa por percentual
+### RF001 - Produto
+- RF001.1 - Cadastro de produtos (CRUD)
+- RF001.2 - Atributos: Nome, Preço unitário, Unidade, Quantidade em estoque, Quantidade mínima, Quantidade máxima, Categoria
+- RF001.3 - Reajuste de preços em massa por percentual
 
-### Categoria
-- Cadastro de categorias (CRUD)
-- Atributos: Nome, Tamanho (Pequeno, Médio, Grande), Embalagem (Lata, Vidro, Plástico)
+### RF002 - Categoria
+- RF002.1 - Cadastro de categorias (CRUD)
+- RF002.2 - Atributos: Nome, Tamanho (Pequeno, Médio, Grande), Embalagem (Lata, Vidro, Plástico)
 
-### Movimentação de Estoque
-- Registro de entradas e saídas de produtos
-- Atualização automática do saldo em estoque
-- Alertas quando quantidade abaixo do mínimo (saída) ou acima do máximo (entrada)
+### RF003 - Movimentação de Estoque
+- RF003.1 - Registro de entradas e saídas de produtos
+- RF003.2 - Atualização automática do saldo em estoque
+- RF003.3 - Alertas quando quantidade abaixo do mínimo (saída) ou acima do máximo (entrada)
 
-### Relatórios
-- Lista de Preços: produtos em ordem alfabética com preço, unidade e categoria
-- Balanço Físico/Financeiro: produtos, quantidade, valor total por produto e valor total do estoque
-- Produtos abaixo da quantidade mínima
-- Produtos acima da quantidade máxima
-- Quantidade de produtos por categoria
+### RF004 - Relatórios
+- RF004.1 - Lista de Preços: produtos em ordem alfabética com preço, unidade e categoria
+- RF004.2 - Balanço Físico/Financeiro: produtos, quantidade, valor total por produto e valor total do estoque
+- RF004.3 - Produtos abaixo da quantidade mínima
+- RF004.4 - Produtos acima da quantidade máxima
+- RF004.5 - Quantidade de produtos por categoria
 
-## Regras de Negócio
-- Saída de produto: subtrai quantidade do estoque
-- Entrada de produto: adiciona quantidade ao estoque
-- Alertar quando estoque abaixo do mínimo durante saída
-- Alertar quando estoque acima do máximo durante entrada
-- Não é necessário cadastrar clientes ou fornecedores
+## RF005 - Regras de Negócio
+- RF005.1 - Saída de produto: subtrai quantidade do estoque
+- RF005.2 - Entrada de produto: adiciona quantidade ao estoque
+- RF005.3 - Alertar quando estoque abaixo do mínimo durante saída
+- RF005.4 - Alertar quando estoque acima do máximo durante entrada
+- RF005.5 - Não é necessário cadastrar clientes ou fornecedores
 
-## Requisitos Técnicos
-- Linguagem: Java
-- IDE: IntelliJ IDEA / NetBeans
-- Banco de Dados: MySQL
-- Padrão de Acesso a Dados: DAO (Data Access Object)
-- Controle de Versão: Git + GitHub
-- JDK 11 ou superior
+## RNF001 - Requisitos Técnicos ( Não Funcionais )
+- RNF001.1 - Linguagem: Java
+- RNF001.2 - IDE: IntelliJ IDEA / NetBeans
+- RNF001.3 - Banco de Dados: MySQL
+- RNF001.4 - Padrão de Acesso a Dados: DAO (Data Access Object)
+- RNF001.5 - Controle de Versão: Git + GitHub
+- RNF001.6 - JDK 11 ou superior
 
 ## Convenções de Código
 - Nome de classes em CamelCase
