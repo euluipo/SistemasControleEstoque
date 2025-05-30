@@ -40,7 +40,14 @@ Senha: teste123
 
 ## ✅ Requisitos Funcionais
 
+### RF001 - Gerenciamento de Produtos
+- **RF001.1:** Permitir o cadastro, consulta, edição e exclusão de produtos. (CRUD)
+- **RF001.2:** Armazenar os seguintes atributos para cada produto: Nome, Preço unitário, Unidade de medida, Quantidade em estoque, Quantidade mínima, Quantidade máxima e Categoria associada.
+- **RF001.3:** Permitir o reajuste de preços em massa para todos os produtos com base em um percentual informado.
 
+### RF002 - Gerenciamento de Categorias
+- **RF002.1:** Permitir o cadastro, consulta, edição e exclusão de categorias.
+- **RF002.2:** Armazenar os seguintes atributos para cada categoria: Nome, Tamanho (Pequeno, Médio, Grande) e Embalagem (Lata, Vidro, Plástico).
 
 ### RF003 - Movimentação de Estoque
 - **RF003.1:** Registrar entradas e saídas de produtos no estoque.
