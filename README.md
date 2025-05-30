@@ -29,6 +29,15 @@ Este sistema foi desenvolvido com base em um problema contextualizado do cotidia
 Sistema inspirado no projeto modelo:  
 🔗 [CadastroAlunoMySQLDAO - GitHub](https://github.com/osmarbraz/CadastroAlunoMySQLDAO)
 
+## 🔐 Credenciais de Conexão Padrão (Mockup para Avaliação)
+
+Para fins de avaliação e padronização entre os avaliadores, utilize as seguintes credenciais ao configurar sua conexão com o MySQL:
+
+```java
+Usuário: root  
+Senha: teste123
+```
+
 ## ✅ Requisitos Funcionais
 
 ### RF001 - Gerenciamento de Produtos
@@ -59,7 +68,7 @@ Sistema inspirado no projeto modelo:
 - **RNF002 (Desempenho):** As consultas ao banco de dados e a geração de relatórios devem ser realizadas em tempo hábil.
 - **RNF003 (Manutenibilidade):** O código deve seguir boas práticas (Clean Code), ser bem documentado e organizado em pacotes (model, view, dao, util) para facilitar a manutenção e futuras evoluções.
 - **RNF004 (Portabilidade):** O sistema deve ser executável em diferentes sistemas operacionais que suportem Java e MySQL.
-- **RNF005 (Segurança):** As credenciais de acesso ao banco de dados não devem ser expostas diretamente no código versionado (idealmente, usar variáveis de ambiente ou arquivos de configuração externos, mas para este projeto acadêmico, estão em `ConnectionFactory.java` e devem ser ajustadas localmente).
+- **RNF005 (Segurança):** As credenciais de acesso ao banco de dados não devem ser expostas diretamente no código versionado (idealmente, usar variáveis de ambiente ou arquivos de configuração externos, **mas para este projeto acadêmico** , estão em `ConnectionFactory.java` e devem ser ajustadas localmente).
 - **RNF006 (Tecnologia):** O sistema deve ser desenvolvido utilizando as tecnologias especificadas (Java, MySQL, Swing, DAO).
 
 ## 🛠️ Tecnologias e Ferramentas Utilizadas
@@ -135,8 +144,8 @@ Arquivo `db/estoque.sql` contendo:
   ```java
   private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
   private static final String URL = "jdbc:mysql://localhost:3306/controle_estoque";
-  private static final String USER = "seu_usuario"; // Altere para seu usuário MySQL
-  private static final String PASS = "sua_senha";   // Altere para sua senha MySQL
+  private static final String USER = "root"; // Altere para seu usuário MySQL
+  private static final String PASS = "teste123";   // Altere para sua senha MySQL
   ```
 
 4. **Importe o projeto na sua IDE:**
