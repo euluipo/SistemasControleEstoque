@@ -3,8 +3,13 @@ package view.produto;
 import dao.ProdutoDAO;
 import model.Produto;
 
-import javax.swing.;
-import java.awt.;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
+
+import java.awt.BorderLayout;
+
 import java.util.List;
 
 public class ConsultarProdutoView extends JFrame {

@@ -2,8 +2,18 @@ package view.relatorios;
 
 import dao.ProdutoDAO;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.BorderFactory;
+import javax.swing.SwingConstants;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.text.NumberFormat;
 import java.util.Locale;
 

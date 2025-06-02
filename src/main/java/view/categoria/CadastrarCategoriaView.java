@@ -3,8 +3,19 @@ package view.categoria;
 import dao.CategoriaDAO;
 import model.Categoria;
 
-import javax.swing.;
-import java.awt.;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

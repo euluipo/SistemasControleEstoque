@@ -4,10 +4,15 @@ import dao.ProdutoDAO;
 import model.Categoria;
 import model.Produto;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JTree;
+import javax.swing.JScrollPane;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+
 import java.util.List;
 import java.util.Map;
 

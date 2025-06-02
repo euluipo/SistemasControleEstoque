@@ -5,10 +5,23 @@ import dao.ProdutoDAO;
 import model.Movimentacao;
 import model.Produto;
 
-import javax.swing.;
-import java.awt.;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.time.LocalDateTime;
 
 public class EntradaEstoqueView extends JFrame {

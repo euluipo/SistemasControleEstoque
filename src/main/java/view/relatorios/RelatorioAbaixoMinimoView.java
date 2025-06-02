@@ -3,9 +3,15 @@ package view.relatorios;
 import dao.ProdutoDAO;
 import model.Produto;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+
 import java.util.List;
 
 public class RelatorioAbaixoMinimoView extends JFrame {

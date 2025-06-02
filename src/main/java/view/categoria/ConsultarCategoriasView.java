@@ -3,9 +3,13 @@ package view.categoria;
 import dao.CategoriaDAO;
 import model.Categoria;
 
-import javax.swing.;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import java.awt.;
+
+import java.awt.BorderLayout;
+
 import java.util.List;
 
 public class ConsultarCategoriasView extends JFrame {
