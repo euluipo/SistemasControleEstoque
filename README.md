@@ -171,3 +171,132 @@ Arquivo `db/estoque.sql` contendo:
 ### Estruturação do Projeto
 
 [Estrutura do Projeto - Sistema de Controle de Estoque](docs/Estrutura_do_Projeto.md)
+
+
+### Diagrama de Classes
+
+```mermaid
+---
+config:
+  theme: neo-dark
+---
+classDiagram
+    direction LR
+    class App {
+        +main(String[])
+    }
+    class TelaPrincipal {
+        -JMenuBar menuBar
+        +TelaPrincipal()
+        -inicializarComponentes()
+        -configurarLayout()
+        -configurarEventos()
+    }
+    class Produto {
+        -int id
+        -String nome
+        -double precoUnitario
+        -String unidade
+        -int quantidadeEstoque
+        -int quantidadeMinima
+        -int quantidadeMaxima
+        -Categoria categoria
+        +estaAbaixoDoMinimo(): boolean
+        +estaAcimaDoMaximo(): boolean
+        +getValorTotalEmEstoque(): double
+        +reajustarPreco(double)
+    }
+    class Categoria {
+        -int id
+        -String nome
+        -String tamanho
+        -String embalagem
+    }
+    class Movimentacao {
+        -int id
+        -Produto produto
+        -String tipo
+        -int quantidade
+        -LocalDateTime dataHora
+        -String observacao
+        +isEntrada(): boolean
+        +isSaida(): boolean
+        +atualizarEstoque(): boolean
+    }
+    class ProdutoDAO {
+        +inserir(Produto): int
+        +atualizar(Produto): boolean
+        +excluir(int): boolean
+        +consultar(int): Produto
+        +listarTodos(): List~Produto~
+        +reajustarPrecos(double): int
+        +listarAbaixoMinimo(): List~Produto~
+        +listarAcimaMaximo(): List~Produto~
+    }
+    class CategoriaDAO {
+        +inserir(Categoria): int
+        +atualizar(Categoria): boolean
+        +excluir(int): boolean
+        +consultar(int): Categoria
+        +listarTodos(): List~Categoria~
+        +contarProdutosPorCategoria(): List~Object[]~
+    }
+    class MovimentacaoDAO {
+        +inserir(Movimentacao): int
+        +consultar(int): Movimentacao
+        +listarTodos(): List~Movimentacao~
+        +listarPorProduto(int): List~Movimentacao~
+        +listarPorTipo(String): List~Movimentacao~
+    }
+    class ConnectionFactory {
+        <<Utility>>
+        -String DRIVER
+        -String URL
+        -String USER
+        -String PASS
+        +getConnection(): Connection
+        +closeConnection(Connection)
+    }
+    class Validador {
+        <<Utility>>
+        +validarTexto(String): boolean
+        +validarPositivo(double): boolean
+        +validarNaoNegativo(double): boolean
+        +validarQuantidade(int): boolean
+    }
+    class GeradorRelatorio {
+        <<Utility>>
+        +gerarRelatorioPrecos(List~Produto~, String): boolean
+        +gerarRelatorioBalanco(List~Produto~, String): boolean
+        +gerarRelatorioAbaixoMinimo(List~Produto~, String): boolean
+        +gerarRelatorioAcimaMaximo(List~Produto~, String): boolean
+        +gerarRelatorioPorCategoria(List~Categoria~, List~Object[]~, String): boolean
+    }
+    Relacionamentos Principais
+    App ..> TelaPrincipal : inicia
+    TelaPrincipal ..> ProdutoDAO : usa
+    TelaPrincipal ..> CategoriaDAO : usa
+    TelaPrincipal ..> MovimentacaoDAO : usa
+    TelaPrincipal ..> GeradorRelatorio : usa
+    ProdutoDAO ..> ConnectionFactory : usa
+    CategoriaDAO ..> ConnectionFactory : usa
+    MovimentacaoDAO ..> ConnectionFactory : usa
+    ProdutoDAO ..> Produto : manipula
+    ProdutoDAO ..> Categoria : manipula
+    CategoriaDAO ..> Categoria : manipula
+    MovimentacaoDAO ..> Movimentacao : manipula
+    MovimentacaoDAO ..> Produto : manipula
+    MovimentacaoDAO ..> Categoria : manipula
+    Produto "1" *-- "1" Categoria : possui
+    Movimentacao "*" -- "1" Produto : refere-se a
+    Dependências de Utilidades
+    As classes DAO e View podem usar Validador
+    ProdutoDAO ..> Validador : usa
+    CategoriaDAO ..> Validador : usa
+    MovimentacaoDAO ..> Validador : usa
+    TelaPrincipal e outras telas podem usar Validador
+    TelaPrincipal ..> Validador : usa 
+    GeradorRelatorio usa as classes de Modelo
+    GeradorRelatorio ..> Produto : usa
+    GeradorRelatorio ..> Categoria : usa
+```
