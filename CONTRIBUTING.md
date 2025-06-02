@@ -21,7 +21,7 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 
 ### Pré-requisitos
 
-- Java JDK 11 ou superior
+- Java JDK 11
 - IDE Java (recomendado: IntelliJ IDEA ou NetBeans)
 - MySQL Server ativo
 
