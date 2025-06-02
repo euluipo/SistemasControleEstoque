@@ -84,10 +84,10 @@ Senha: teste123
 
 ## 🧱 Estrutura do Projeto
 
-- `src/model`: Classes de entidade (Produto, Categoria, Movimentacao)
-- `src/view`: Telas e interface gráfica (Swing)
-- `src/dao`: Classes de persistência e consultas ao banco
-- `src/util`: Classes utilitárias (Validador, GeradorRelatorio)
+- `src/main/java/model`: Classes de entidade (Produto, Categoria, Movimentacao)
+- `src/main/java/view`: Telas e interface gráfica (Swing)
+- `src/main/java/dao`: Classes de persistência e consultas ao banco
+- `src/main/java/util`: Classes utilitárias (Validador, GeradorRelatorio)
 - `db/estoque.sql`: Script SQL para criação do banco de dados
 
 ## 📂 Banco de Dados
@@ -141,7 +141,7 @@ Arquivo `db/estoque.sql` contendo:
 - Alternativamente, no MySQL Workbench, vá em File > Open SQL Script, selecione o arquivo `db/estoque.sql` e execute-o
 
 3. **Configure a conexão com o banco de dados:**
-- Abra o arquivo `src/dao/ConnectionFactory.java`
+- Abra o arquivo `src/main/java/dao/ConnectionFactory.java`
 - Ajuste as constantes de conexão conforme sua configuração:
   ```java
   private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -154,7 +154,7 @@ Arquivo `db/estoque.sql` contendo:
 - No IntelliJ IDEA: File > Open > Selecione a pasta do projeto
 
 5. **Execute a aplicação:**
-- Navegue até a classe `src/view/App.java`
+- Navegue até a classe `src/main/java/view/App.java`
 - Clique com o botão direito e selecione "Run 'App.main()'"
 - A interface gráfica do sistema será iniciada
 

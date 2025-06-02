@@ -3,7 +3,9 @@
 ## Estrutura de Pacotes
 
 ```
-src/
+src/main/java/
+├── db/
+│   └── estoque.sql
 ├── model/
 │   ├── Produto.java
 │   ├── Categoria.java

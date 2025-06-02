@@ -37,10 +37,10 @@ Abaixo estão algumas diretrizes importantes para garantir uma colaboração efi
 3. **Configure o banco de dados:**
     - Certifique-se de que o MySQL Server esteja instalado e em execução
     - Execute o script SQL localizado em `db/estoque.sql`
-    - Ajuste as credenciais de conexão em `src/dao/ConnectionFactory.java`
+    - Ajuste as credenciais de conexão em `src/main/java/dao/ConnectionFactory.java`
 
 4. **Compile e execute o projeto**
-    - A classe principal é `src/view/App.java`
+    - A classe principal é `src/main/java/view/App.java`
 
 ## 📝 Lista de Tarefas (ToDo)
 
