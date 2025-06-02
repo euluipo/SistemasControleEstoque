@@ -2,8 +2,8 @@ package view.produto;
 
 import dao.ProdutoDAO;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.;
+import java.awt.;
 import java.awt.event.ActionEvent;
 
 public class ReajustarPrecoProdutoView extends JFrame {
