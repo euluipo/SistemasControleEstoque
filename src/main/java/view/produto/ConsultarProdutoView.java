@@ -3,8 +3,8 @@ package view.produto;
 import dao.ProdutoDAO;
 import model.Produto;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.;
+import java.awt.;
 import java.util.List;
 
 public class ConsultarProdutoView extends JFrame {
