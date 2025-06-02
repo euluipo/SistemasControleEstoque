@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import model.Categoria;
 import model.Produto;
-import model.Movimentacao;
 
 /**
  * Classe utilitária para geração de relatórios do sistema.
