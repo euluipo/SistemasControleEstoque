@@ -80,6 +80,7 @@ Senha: teste123
 - **Interface Gráfica:** Java Swing
 - **Padrão de Acesso a Dados:** DAO (Data Access Object)
 - **Controle de Versão:** Git (Recomendado, versão 2.x ou superior) + GitHub
+- **Gerenciamento de Dependência**: Maven, versão 3.9.9
 
 ## 🧱 Estrutura do Projeto
 
@@ -119,6 +120,7 @@ Arquivo `db/estoque.sql` contendo:
 - Java JDK 11 ou superior
 - IDE Java (IntelliJ IDEA recomendado)
 - MySQL Server instalado e em execução
+- Maven 3.9.9
 
 ### Passo a Passo
 
@@ -150,10 +152,6 @@ Arquivo `db/estoque.sql` contendo:
 
 4. **Importe o projeto na sua IDE:**
 - No IntelliJ IDEA: File > Open > Selecione a pasta do projeto
-- Adicione o driver JDBC do MySQL ao projeto:
-    - File > Project Structure > Libraries
-    - Clique no "+" e selecione "From Maven"
-    - Pesquise por "mysql-connector-java" e adicione a versão mais recente (ex: 8.0.x)
 
 5. **Execute a aplicação:**
 - Navegue até a classe `src/view/App.java`
