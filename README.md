@@ -117,7 +117,7 @@ Arquivo `db/estoque.sql` contendo:
 
 ### Pré-requisitos
 
-- Java JDK 11 ou superior
+- Java JDK 11
 - IDE Java (IntelliJ IDEA recomendado)
 - MySQL Server instalado e em execução
 - Maven 3.9.9
