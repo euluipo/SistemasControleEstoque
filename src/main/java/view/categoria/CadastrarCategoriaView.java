@@ -3,8 +3,8 @@ package view.categoria;
 import dao.CategoriaDAO;
 import model.Categoria;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.;
+import java.awt.;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
