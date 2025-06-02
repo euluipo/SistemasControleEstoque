@@ -73,7 +73,7 @@ Senha: teste123
 
 ## 🛠️ Tecnologias e Ferramentas Utilizadas
 
-- **Linguagem:** Java (JDK 11 ou superior)
+- **Linguagem:** Java (JDK 11)
 - **IDE:** IntelliJ IDEA (Recomendado, versão 2023.x ou superior) / NetBeans
 - **Banco de Dados:** MySQL Server (Recomendado, versão 8.0 ou superior)
 - **Driver Banco de Dados:** MySQL Connector/J (JDBC Driver, versão 8.0.x ou superior)
