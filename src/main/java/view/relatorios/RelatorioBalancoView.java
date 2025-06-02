@@ -14,8 +14,7 @@ import java.awt.Font;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.text.NumberFormat;
-import java.util.Locale;
+
 
 public class RelatorioBalancoView extends JFrame {
 
