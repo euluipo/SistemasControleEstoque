@@ -15,11 +15,13 @@ public class Produto {
     private int quantidadeMinima;
     private int quantidadeMaxima;
     private Categoria categoria;
-    
+
     /**
      * Construtor padrão da classe Produto.
+     * Inicializa todos os atributos com valores “neutros” (id=0, nome/vazios, números zero, categoria nula).
      */
     public Produto() {
+        this(0, "", 0.0, "", 0, 0, 0, null);
     }
     
     /**
