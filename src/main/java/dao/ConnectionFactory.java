@@ -9,12 +9,12 @@ import java.sql.SQLException;
  * Implementa o padrão Factory para centralizar a criação de conexões.
  */
 public class ConnectionFactory {
-    
-    // Constantes para conexão com o banco de dados
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/controle_estoque";
-    private static final String USER = "root";
-    private static final String PASS = "teste123";
+
+    // Atributos de instância (não estáticos)
+    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private final String URL = "jdbc:mysql://localhost:3306/controle_estoque";
+    private final String USER = "root";
+    private final String PASS = "teste123";
     
     /**
      * Obtém uma conexão com o banco de dados.
@@ -22,7 +22,7 @@ public class ConnectionFactory {
      * @return Uma conexão com o banco de dados
      * @throws SQLException Se ocorrer um erro ao conectar ao banco de dados
      */
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         try {
             // Carrega o driver JDBC
             Class.forName(DRIVER);
@@ -41,7 +41,7 @@ public class ConnectionFactory {
      * 
      * @param conn A conexão a ser fechada
      */
-    public static void closeConnection(Connection conn) {
+    public void closeConnection(Connection conn) {
         try {
             if (conn != null) {
                 conn.close();
@@ -57,7 +57,7 @@ public class ConnectionFactory {
      * @param conn A conexão a ser fechada
      * @param mensagem A mensagem de erro a ser exibida
      */
-    public static void closeConnection(Connection conn, String mensagem) {
+    public void closeConnection(Connection conn, String mensagem) {
         System.err.println(mensagem);
         closeConnection(conn);
     }
