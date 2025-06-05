@@ -176,22 +176,10 @@ Arquivo `db/estoque.sql` contendo:
 ### Diagrama de Classes
 
 ```mermaid
----
-config:
-  theme: neo-dark
----
 classDiagram
-    direction LR
-    class App {
-        +main(String[])
-    }
-    class TelaPrincipal {
-        -JMenuBar menuBar
-        +TelaPrincipal()
-        -inicializarComponentes()
-        -configurarLayout()
-        -configurarEventos()
-    }
+    direction TB
+
+    %% Classes principais do modelo
     class Produto {
         -int id
         -String nome
@@ -201,17 +189,43 @@ classDiagram
         -int quantidadeMinima
         -int quantidadeMaxima
         -Categoria categoria
+        +getId(): int
+        +getNome(): String
+        +getPrecoUnitario(): double
+        +getUnidade(): String
+        +getQuantidadeEstoque(): int
+        +getQuantidadeMinima(): int
+        +getQuantidadeMaxima(): int
+        +getCategoria(): Categoria
+        +setId(int)
+        +setNome(String)
+        +setPrecoUnitario(double)
+        +setUnidade(String)
+        +setQuantidadeEstoque(int)
+        +setQuantidadeMinima(int)
+        +setQuantidadeMaxima(int)
+        +setCategoria(Categoria)
         +estaAbaixoDoMinimo(): boolean
         +estaAcimaDoMaximo(): boolean
         +getValorTotalEmEstoque(): double
         +reajustarPreco(double)
     }
+
     class Categoria {
         -int id
         -String nome
         -String tamanho
         -String embalagem
+        +getId(): int
+        +getNome(): String
+        +getTamanho(): String
+        +getEmbalagem(): String
+        +setId(int)
+        +setNome(String)
+        +setTamanho(String)
+        +setEmbalagem(String)
     }
+
     class Movimentacao {
         -int id
         -Produto produto
@@ -219,10 +233,35 @@ classDiagram
         -int quantidade
         -LocalDateTime dataHora
         -String observacao
+        +getId(): int
+        +getProduto(): Produto
+        +getTipo(): String
+        +getQuantidade(): int
+        +getDataHora(): LocalDateTime
+        +getObservacao(): String
+        +setId(int)
+        +setProduto(Produto)
+        +setTipo(String)
+        +setQuantidade(int)
+        +setDataHora(LocalDateTime)
+        +setObservacao(String)
         +isEntrada(): boolean
         +isSaida(): boolean
         +atualizarEstoque(): boolean
     }
+
+    %% Classes DAO
+    class ConnectionFactory {
+        -String DRIVER
+        -String URL
+        -String USER
+        -String PASS
+        +getConnection(): Connection
+        +closeConnection(Connection)
+        +closeConnection(Connection, PreparedStatement)
+        +closeConnection(Connection, PreparedStatement, ResultSet)
+    }
+
     class ProdutoDAO {
         +inserir(Produto): int
         +atualizar(Produto): boolean
@@ -232,71 +271,53 @@ classDiagram
         +reajustarPrecos(double): int
         +listarAbaixoMinimo(): List~Produto~
         +listarAcimaMaximo(): List~Produto~
+        +buscarPorNome(String): List~Produto~
     }
+
     class CategoriaDAO {
         +inserir(Categoria): int
         +atualizar(Categoria): boolean
         +excluir(int): boolean
         +consultar(int): Categoria
         +listarTodos(): List~Categoria~
-        +contarProdutosPorCategoria(): List~Object[]~
+        +contarProdutosPorCategoria(): Map~String, Integer~
+        +buscarPorNome(String): List~Categoria~
     }
+
     class MovimentacaoDAO {
         +inserir(Movimentacao): int
         +consultar(int): Movimentacao
         +listarTodos(): List~Movimentacao~
         +listarPorProduto(int): List~Movimentacao~
         +listarPorTipo(String): List~Movimentacao~
+        +listarPorPeriodo(LocalDateTime, LocalDateTime): List~Movimentacao~
     }
-    class ConnectionFactory {
-        <<Utility>>
-        -String DRIVER
-        -String URL
-        -String USER
-        -String PASS
-        +getConnection(): Connection
-        +closeConnection(Connection)
+
+    %% Classes de View
+    class App {
+        +main(String[]): void
     }
-    class Validador {
-        <<Utility>>
-        +validarTexto(String): boolean
-        +validarPositivo(double): boolean
-        +validarNaoNegativo(double): boolean
-        +validarQuantidade(int): boolean
+
+    class TelaPrincipal {
+        -JMenuBar menuBar
+        -JMenu menuProdutos
+        -JMenu menuCategorias
+        -JMenu menuMovimentacoes
+        -JMenu menuRelatorios
+        +TelaPrincipal()
+        -inicializarComponentes(): void
+        -configurarLayout(): void
+        -configurarEventos(): void
     }
-    class GeradorRelatorio {
-        <<Utility>>
-        +gerarRelatorioPrecos(List~Produto~, String): boolean
-        +gerarRelatorioBalanco(List~Produto~, String): boolean
-        +gerarRelatorioAbaixoMinimo(List~Produto~, String): boolean
-        +gerarRelatorioAcimaMaximo(List~Produto~, String): boolean
-        +gerarRelatorioPorCategoria(List~Categoria~, List~Object[]~, String): boolean
-    }
-    Relacionamentos Principais
-    App ..> TelaPrincipal : inicia
+
+    %% Relacionamentos
+    Produto "1" *-- "1" Categoria : possui
+    Movimentacao "1" *-- "1" Produto : referencia
+    App --> TelaPrincipal : cria
+    ProdutoDAO --> ConnectionFactory : usa
+    CategoriaDAO --> ConnectionFactory : usa
+    MovimentacaoDAO --> ConnectionFactory : usa
     TelaPrincipal ..> ProdutoDAO : usa
     TelaPrincipal ..> CategoriaDAO : usa
     TelaPrincipal ..> MovimentacaoDAO : usa
-    TelaPrincipal ..> GeradorRelatorio : usa
-    ProdutoDAO ..> ConnectionFactory : usa
-    CategoriaDAO ..> ConnectionFactory : usa
-    MovimentacaoDAO ..> ConnectionFactory : usa
-    ProdutoDAO ..> Produto : manipula
-    ProdutoDAO ..> Categoria : manipula
-    CategoriaDAO ..> Categoria : manipula
-    MovimentacaoDAO ..> Movimentacao : manipula
-    MovimentacaoDAO ..> Produto : manipula
-    MovimentacaoDAO ..> Categoria : manipula
-    Produto "1" *-- "1" Categoria : possui
-    Movimentacao "*" -- "1" Produto : refere-se a
-    Dependências de Utilidades
-    As classes DAO e View podem usar Validador
-    ProdutoDAO ..> Validador : usa
-    CategoriaDAO ..> Validador : usa
-    MovimentacaoDAO ..> Validador : usa
-    TelaPrincipal e outras telas podem usar Validador
-    TelaPrincipal ..> Validador : usa 
-    GeradorRelatorio usa as classes de Modelo
-    GeradorRelatorio ..> Produto : usa
-    GeradorRelatorio ..> Categoria : usa
 ```
