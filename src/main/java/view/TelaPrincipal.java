@@ -48,12 +48,13 @@ public class TelaPrincipal extends JFrame {
 
     // Componentes da interface
     private JMenuBar menuBar;
-    private JMenu menuProdutos, menuCategorias, menuMovimentacoes, menuRelatorios;
+    private JMenu menuProdutos, menuCategorias, menuMovimentacoes, menuRelatorios, menuAjuda;
     private JMenuItem miCadastrarProduto, miConsultarProdutos, miReajustarPrecos;
     private JMenuItem miCadastrarCategoria, miConsultarCategorias;
     private JMenuItem miEntradaEstoque, miSaidaEstoque;
     private JMenuItem miRelatorioPrecos, miRelatorioBalanco, miRelatorioAbaixoMinimo;
     private JMenuItem miRelatorioAcimaMaximo, miRelatorioPorCategoria;
+    private JMenuItem miSobre;
 
     private JPanel painelPrincipal;
     private JLabel lblCabecalho;
@@ -64,11 +65,13 @@ public class TelaPrincipal extends JFrame {
      * Inicializa a interface gráfica com estilo aprimorado.
      */
     public TelaPrincipal() {
+
         // Configurações básicas da janela
         setTitle("Sistema de Controle de Estoque");
-        setSize(800, 600);
+        // Configurar tela cheia
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setVisible(true);
 
         // Inicializa componentes
         inicializarComponentes();
@@ -227,7 +230,25 @@ public class TelaPrincipal extends JFrame {
         menuRelatorios.add(miRelatorioPorCategoria);
 
         // ============================
-        // 6) Painel principal (conteúdo central)
+        // 6) Menu "Ajuda" (conteúdo central)
+        // ============================
+        menuAjuda = new JMenu("Ajuda");
+        menuAjuda.setOpaque(true);
+        menuAjuda.setBackground(new Color(45, 62, 80));
+        menuAjuda.setForeground(Color.WHITE);
+        menuAjuda.getPopupMenu().setOpaque(true);
+        menuAjuda.getPopupMenu().setBackground(new Color(45, 62, 80));
+
+        miSobre = new JMenuItem("Sobre");
+        miSobre.setOpaque(true);
+        miSobre.setBackground(new Color(69, 94, 116));
+        miSobre.setForeground(Color.WHITE);
+        miSobre.setToolTipText("Informações sobre o projeto e desenvolvedores");
+
+        menuAjuda.add(miSobre);
+
+        // ============================
+        // 7) Painel principal (conteúdo central)
         // ============================
         painelPrincipal = new JPanel(new BorderLayout());
         painelPrincipal.setBackground(new Color(236, 240, 241)); // cinza-claro
@@ -260,6 +281,7 @@ public class TelaPrincipal extends JFrame {
         menuBar.add(menuCategorias);
         menuBar.add(menuMovimentacoes);
         menuBar.add(menuRelatorios);
+        menuBar.add(menuAjuda);
 
         // Painel de conteúdo (apenas um espaço vazio ampliável)
         JPanel painelCentro = new JPanel(new BorderLayout());
@@ -385,6 +407,17 @@ public class TelaPrincipal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 lblStatus.setText("Gerando relatório de produtos por categoria...");
                 new RelatorioPorCategoriaView().setVisible(true);
+            }
+        });
+        // ============================
+        // Ajuda
+        // ============================
+        miSobre.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblStatus.setText("Abrindo tela de sobre...");
+                TelaSobre telaSobre = new TelaSobre(TelaPrincipal.this);
+                telaSobre.setVisible(true);
             }
         });
     }
