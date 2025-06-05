@@ -18,6 +18,7 @@ src/main/java/
 ├── view/
 │   ├── App.java (Classe principal)
 │   ├── TelaPrincipal.java
+│   ├── TelaSobre.java
 │   ├── produto/
 │   │   ├── TelaCadastroProduto.java
 │   │   ├── TelaConsultaProduto.java
