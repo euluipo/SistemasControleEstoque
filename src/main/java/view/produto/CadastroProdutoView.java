@@ -27,7 +27,8 @@ import java.util.List;
  */
 public class CadastroProdutoView extends JFrame {
 
-    private JTextField tfNome, tfPreco, tfUnidade, tfEstoque, tfMinimo, tfMaximo;
+    private JTextField tfNome, tfPreco, tfEstoque, tfMinimo, tfMaximo;
+    private JComboBox<String> cbUnidade;
     private JComboBox<Categoria> cbCategoria;
     private JButton btnSalvar, btnCancelar;
 
@@ -47,7 +48,9 @@ public class CadastroProdutoView extends JFrame {
         // Campos de texto
         tfNome    = new JTextField();
         tfPreco   = new JTextField();
-        tfUnidade = new JTextField();
+        cbUnidade = new JComboBox<>(new String[]{
+                "Lata", "Pacote", "Garrafa", "Caixa", "Saco", "Envelope", "Pote"
+        });
         tfEstoque = new JTextField();
         tfMinimo  = new JTextField();
         tfMaximo  = new JTextField();
@@ -61,7 +64,7 @@ public class CadastroProdutoView extends JFrame {
         formPanel.add(tfPreco);
 
         formPanel.add(new JLabel("Unidade:"));
-        formPanel.add(tfUnidade);
+        formPanel.add(cbUnidade);
 
         formPanel.add(new JLabel("Qtd Estoque:"));
         formPanel.add(tfEstoque);
@@ -72,11 +75,11 @@ public class CadastroProdutoView extends JFrame {
         formPanel.add(new JLabel("Qtd Máxima:"));
         formPanel.add(tfMaximo);
 
-        // Em vez de pedir ID manual, colocamos JComboBox
+        // Categoria via JComboBox
         formPanel.add(new JLabel("Categoria:"));
         formPanel.add(cbCategoria);
 
-        // Carrega categorias do banco e preenche o combo
+        // Carrega categorias do banco
         carregarCategorias();
 
         // Painel de botões
@@ -96,16 +99,14 @@ public class CadastroProdutoView extends JFrame {
         // Ação do botão Salvar
         btnSalvar.addActionListener((ActionEvent e) -> {
             try {
-                // Monta objeto Produto
                 Produto p = new Produto();
-                p.setNome(tfNome.getText().trim());
-                p.setPrecoUnitario(Double.parseDouble(tfPreco.getText().trim()));
-                p.setUnidade(tfUnidade.getText().trim());
-                p.setQuantidadeEstoque(Integer.parseInt(tfEstoque.getText().trim()));
-                p.setQuantidadeMinima(Integer.parseInt(tfMinimo.getText().trim()));
-                p.setQuantidadeMaxima(Integer.parseInt(tfMaximo.getText().trim()));
+                p.setNome(tfNome.getText());
+                p.setPrecoUnitario(Double.parseDouble(tfPreco.getText()));
+                p.setUnidade((String) cbUnidade.getSelectedItem());
+                p.setQuantidadeEstoque(Integer.parseInt(tfEstoque.getText()));
+                p.setQuantidadeMinima(Integer.parseInt(tfMinimo.getText()));
+                p.setQuantidadeMaxima(Integer.parseInt(tfMaximo.getText()));
 
-                // Categoria selecionada no JComboBox
                 Categoria catSelecionada = (Categoria) cbCategoria.getSelectedItem();
                 if (catSelecionada == null) {
                     JOptionPane.showMessageDialog(this,
@@ -116,7 +117,6 @@ public class CadastroProdutoView extends JFrame {
                 }
                 p.setCategoria(catSelecionada);
 
-                // Insere no banco e obtem ID gerado
                 int gerado = new ProdutoDAO().inserir(p);
                 if (gerado > 0) {
                     JOptionPane.showMessageDialog(this,
@@ -144,7 +144,7 @@ public class CadastroProdutoView extends JFrame {
             }
         });
 
-        // Ação do botão Cancelar: apenas fecha a janela
+        // Ação do botão Cancelar
         btnCancelar.addActionListener(e -> dispose());
 
         setVisible(true);

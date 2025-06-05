@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import view.produto.CadastroProdutoView;
 import view.produto.ConsultarProdutoView;
 import view.produto.ReajustarPrecoProdutoView;
+import view.produto.ReajustarPrecoProdutoUnitarioView;
 
 // IMPORT DAS TELAS DE CATEGORIAS
 import view.categoria.CadastrarCategoriaView;
@@ -49,7 +50,7 @@ public class TelaPrincipal extends JFrame {
     // Componentes da interface
     private JMenuBar menuBar;
     private JMenu menuProdutos, menuCategorias, menuMovimentacoes, menuRelatorios, menuAjuda;
-    private JMenuItem miCadastrarProduto, miConsultarProdutos, miReajustarPrecos;
+    private JMenuItem miCadastrarProduto, miConsultarProdutos, miReajustarPrecos, miReajustarPrecosUnitario;
     private JMenuItem miCadastrarCategoria, miConsultarCategorias;
     private JMenuItem miEntradaEstoque, miSaidaEstoque;
     private JMenuItem miRelatorioPrecos, miRelatorioBalanco, miRelatorioAbaixoMinimo;
@@ -65,7 +66,6 @@ public class TelaPrincipal extends JFrame {
      * Inicializa a interface gráfica com estilo aprimorado.
      */
     public TelaPrincipal() {
-
         // Configurações básicas da janela
         setTitle("Sistema de Controle de Estoque");
         // Configurar tela cheia
@@ -121,16 +121,22 @@ public class TelaPrincipal extends JFrame {
         miConsultarProdutos.setForeground(Color.WHITE);
         miConsultarProdutos.setToolTipText("Listar e buscar produtos já cadastrados");
 
-        miReajustarPrecos = new JMenuItem("Reajustar Preços");
+        miReajustarPrecos = new JMenuItem("Reajustar Preços em Massa");
         miReajustarPrecos.setOpaque(true);
         miReajustarPrecos.setBackground(new Color(69, 94, 116));
         miReajustarPrecos.setForeground(Color.WHITE);
         miReajustarPrecos.setToolTipText("Aplicar reajuste de preços a todos os produtos");
 
+        miReajustarPrecosUnitario = new JMenuItem("Reajustar Preço Unitário");
+        miReajustarPrecosUnitario.setOpaque(true);
+        miReajustarPrecosUnitario.setBackground(new Color(69, 94, 116));
+        miReajustarPrecosUnitario.setForeground(Color.WHITE);
+        miReajustarPrecosUnitario.setToolTipText("Aplicar reajuste de preços a um produto especifico");
+
         menuProdutos.add(miCadastrarProduto);
         menuProdutos.add(miConsultarProdutos);
-        menuProdutos.addSeparator();
         menuProdutos.add(miReajustarPrecos);
+        menuProdutos.add(miReajustarPrecosUnitario);
 
         // ============================
         // 3) Menu "Categorias" e itens
@@ -224,7 +230,6 @@ public class TelaPrincipal extends JFrame {
 
         menuRelatorios.add(miRelatorioPrecos);
         menuRelatorios.add(miRelatorioBalanco);
-        menuRelatorios.addSeparator();
         menuRelatorios.add(miRelatorioAbaixoMinimo);
         menuRelatorios.add(miRelatorioAcimaMaximo);
         menuRelatorios.add(miRelatorioPorCategoria);
@@ -320,6 +325,7 @@ public class TelaPrincipal extends JFrame {
                 new CadastroProdutoView().setVisible(true);
             }
         });
+
         miConsultarProdutos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -327,11 +333,20 @@ public class TelaPrincipal extends JFrame {
                 new ConsultarProdutoView().setVisible(true);
             }
         });
+
         miReajustarPrecos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lblStatus.setText("Abrindo tela de reajuste de preços...");
                 new ReajustarPrecoProdutoView().setVisible(true);
+            }
+        });
+
+        miReajustarPrecosUnitario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblStatus.setText("Abrindo tela de reajuste unitário de preço...");
+                new ReajustarPrecoProdutoUnitarioView().setVisible(true);
             }
         });
 
@@ -345,6 +360,7 @@ public class TelaPrincipal extends JFrame {
                 new CadastrarCategoriaView().setVisible(true);
             }
         });
+
         miConsultarCategorias.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -363,6 +379,7 @@ public class TelaPrincipal extends JFrame {
                 new EntradaEstoqueView().setVisible(true);
             }
         });
+
         miSaidaEstoque.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -381,6 +398,7 @@ public class TelaPrincipal extends JFrame {
                 new RelatorioPrecosView().setVisible(true);
             }
         });
+
         miRelatorioBalanco.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -388,6 +406,7 @@ public class TelaPrincipal extends JFrame {
                 new RelatorioBalancoView().setVisible(true);
             }
         });
+
         miRelatorioAbaixoMinimo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -395,6 +414,7 @@ public class TelaPrincipal extends JFrame {
                 new RelatorioAbaixoMinimoView().setVisible(true);
             }
         });
+
         miRelatorioAcimaMaximo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -402,6 +422,7 @@ public class TelaPrincipal extends JFrame {
                 new RelatorioAcimaMaximoView().setVisible(true);
             }
         });
+
         miRelatorioPorCategoria.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -409,6 +430,7 @@ public class TelaPrincipal extends JFrame {
                 new RelatorioPorCategoriaView().setVisible(true);
             }
         });
+
         // ============================
         // Ajuda
         // ============================
