@@ -22,14 +22,12 @@ import java.awt.event.ActionListener;
 // IMPORT DAS TELAS DE PRODUTOS
 import view.produto.CadastroProdutoView;
 import view.produto.ConsultarProdutoView;
-import view.produto.ExcluirProdutoView;
 import view.produto.ReajustarPrecoProdutoView;
 import view.produto.ReajustarPrecoProdutoUnitarioView;
 
 // IMPORT DAS TELAS DE CATEGORIAS
 import view.categoria.CadastrarCategoriaView;
 import view.categoria.ConsultarCategoriasView;
-import view.categoria.ExcluirCategoriaView;
 
 // IMPORT DAS TELAS DE MOVIMENTAÇÕES
 import view.movimentacao.EntradaEstoqueView;
