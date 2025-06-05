@@ -32,6 +32,7 @@ import view.categoria.ConsultarCategoriasView;
 // IMPORT DAS TELAS DE MOVIMENTAÇÕES
 import view.movimentacao.EntradaEstoqueView;
 import view.movimentacao.SaidaEstoqueView;
+import view.movimentacoes.HistoricoEstoqueView;
 
 // IMPORT DAS TELAS DE RELATÓRIOS
 import view.relatorios.RelatorioAbaixoMinimoView;
@@ -52,7 +53,7 @@ public class TelaPrincipal extends JFrame {
     private JMenu menuProdutos, menuCategorias, menuMovimentacoes, menuRelatorios, menuAjuda;
     private JMenuItem miCadastrarProduto, miConsultarProdutos, miReajustarPrecos, miReajustarPrecosUnitario;
     private JMenuItem miCadastrarCategoria, miConsultarCategorias;
-    private JMenuItem miEntradaEstoque, miSaidaEstoque;
+    private JMenuItem miEntradaEstoque, miSaidaEstoque, miHistoricoEstoque;
     private JMenuItem miRelatorioPrecos, miRelatorioBalanco, miRelatorioAbaixoMinimo;
     private JMenuItem miRelatorioAcimaMaximo, miRelatorioPorCategoria;
     private JMenuItem miSobre;
@@ -185,8 +186,15 @@ public class TelaPrincipal extends JFrame {
         miSaidaEstoque.setForeground(Color.WHITE);
         miSaidaEstoque.setToolTipText("Registrar saída de estoque");
 
+        miHistoricoEstoque = new JMenuItem("Histórico de Movimentações");
+        miHistoricoEstoque.setOpaque(true);
+        miHistoricoEstoque.setBackground(new Color(69, 94, 116));
+        miHistoricoEstoque.setForeground(Color.WHITE);
+        miHistoricoEstoque.setToolTipText("Mostra o histórico completo do estoque");
+
         menuMovimentacoes.add(miEntradaEstoque);
         menuMovimentacoes.add(miSaidaEstoque);
+        menuMovimentacoes.add(miHistoricoEstoque);
 
         // ============================
         // 5) Menu "Relatórios" e itens
@@ -385,6 +393,13 @@ public class TelaPrincipal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 lblStatus.setText("Abrindo tela de saída de estoque...");
                 new SaidaEstoqueView().setVisible(true);
+            }
+        });
+
+        miHistoricoEstoque.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new HistoricoEstoqueView().setVisible(true);
             }
         });
 
