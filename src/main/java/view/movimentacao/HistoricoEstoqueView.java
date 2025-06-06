@@ -1,11 +1,17 @@
-package view.movimentacoes;
+package view.movimentacao;
 
 import dao.MovimentacaoDAO;
 import model.Movimentacao;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
