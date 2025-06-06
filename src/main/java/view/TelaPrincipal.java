@@ -32,7 +32,7 @@ import view.categoria.ConsultarCategoriasView;
 // IMPORT DAS TELAS DE MOVIMENTAÇÕES
 import view.movimentacao.EntradaEstoqueView;
 import view.movimentacao.SaidaEstoqueView;
-import view.movimentacoes.HistoricoEstoqueView;
+import view.movimentacao.HistoricoEstoqueView;
 
 // IMPORT DAS TELAS DE RELATÓRIOS
 import view.relatorios.RelatorioAbaixoMinimoView;

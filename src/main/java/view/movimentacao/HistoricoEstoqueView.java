@@ -1,4 +1,4 @@
-package view.movimentacoes;
+package view.movimentacao;
 
 import dao.MovimentacaoDAO;
 import model.Movimentacao;
